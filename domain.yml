@@ -1,0 +1,47 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - get_usecase
+  - bot_challenge
+
+entities:
+  - usecase
+  - price
+  - brandgi
+
+slots:
+  usecase:
+    type: text
+    auto_fill: true
+    influence_conversation: false
+
+responses:
+  utter_greet_1:
+  - text: "Hey! I am Your Laptop Guide."
+
+  utter_greet_2:
+  - text: "I will help you pick the perfect laptop for your needs!"
+
+  utter_what_usecase:
+  - text: "What will you be using the laptop for?"
+
+  utter_usecase:
+  - text: "So you will be using laptop for {usecase} purposes."
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+config:
+  store_entities_as_slots: true

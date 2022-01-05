@@ -1,0 +1,198 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- synonym: work / business
+  examples: |
+    - office
+    - college
+    - school
+    - study
+    - work
+
+- synonym: gaming
+  examples: |
+    - games
+    - game
+    - gaming
+    - video editing
+    - edit video
+    - content creation
+    - create content
+    - content creator
+
+- synonym: home / personal
+  examples: |
+    - watch
+    - normal
+    - home
+    - personal
+
+- intent: get_usecase
+  examples: |
+    - i want laptop for playing [games]{"entity": "usecase", "value": "gaming"}
+    - i need laptop for playing [games]{"entity": "usecase", "value": "gaming"}
+    - i need laptop to play [games]{"entity": "usecase", "value": "gaming"}
+    - i want laptop to play [games]{"entity": "usecase", "value": "gaming"}
+    - i want laptop to play [game]{"entity": "usecase", "value": "gaming"}
+    - i need laptop to play [game]{"entity": "usecase", "value": "gaming"}
+    - i will use for [gaming]{"entity": "usecase", "value": "gaming"} 
+    - i want to play [games]{"entity": "usecase", "value": "gaming"}
+    - play [games]{"entity": "usecase", "value": "gaming"}
+    - [gaming] laptop{"entity": "usecase", "value": "gaming"}
+    - [game] playing{"entity": "usecase", "value": "gaming"}
+    - i want to be [content creator]{"entity": "usecase", "value": "gaming"}
+    - use for [content creation]{"entity": "usecase", "value": "gaming"}
+    - i want to [create content]{"entity": "usecase", "value": "gaming"}
+    - [games]{"entity": "usecase", "value": "gaming"}
+    - [game]{"entity": "usecase", "value": "gaming"}
+    - [gaming]{"entity": "usecase", "value": "gaming"}
+    - [video editing]{"entity": "usecase", "value": "gaming"}
+    - [edit video]{"entity": "usecase", "value": "gaming"}
+    - [content creation]{"entity": "usecase", "value": "gaming"}
+    - [create content]{"entity": "usecase", "value": "gaming"}
+    - [content creator]{"entity": "usecase", "value": "gaming"}
+    - laptop for [school]{"entity": "usecase", "value": "work / business"}
+    - laptop for [work]{"entity": "usecase", "value": "work / business"}
+    - laptop for [college]{"entity": "usecase", "value": "work / business"}
+    - laptop for [study]{"entity": "usecase", "value": "work / business"}
+    - i need laptop to [study]{"entity": "usecase", "value": "work / business"}
+    - i need laptop to [work]{"entity": "usecase", "value": "work / business"}
+    - want to [work]{"entity": "usecase", "value": "work / business"}
+    - need to [work]{"entity": "usecase", "value": "work / business"}
+    - need to [study]{"entity": "usecase", "value": "work / business"}
+    - want to [study]{"entity": "usecase", "value": "work / business"}
+    - [work] laptop{"entity": "usecase", "value": "work / business"}
+    - [office]{"entity": "usecase", "value": "work / business"}
+    - [college]{"entity": "usecase", "value": "work / business"}
+    - [school]{"entity": "usecase", "value": "work / business"}
+    - [study]{"entity": "usecase", "value": "work / business"}
+    - [normal] use{"entity": "usecase", "value": "home / personal"}
+    - [watch] video{"entity": "usecase", "value": "home / personal"}
+    - [watch] youtube{"entity": "usecase", "value": "home / personal"}
+    - [watch] movie{"entity": "usecase", "value": "home / personal"}
+    - for [home]{"entity": "usecase", "value": "home / personal"}
+    - for [personal] use{"entity": "usecase", "value": "home / personal"}
+    - use at [home]{"entity": "usecase", "value": "home / personal"}
+    - use in [home]{"entity": "usecase", "value": "home / personal"}
+    - use [normal]{"entity": "usecase", "value": "home / personal"}
+    - use [home]{"entity": "usecase", "value": "home / personal"}
+    - [watch]{"entity": "usecase", "value": "home / personal"}
+    - [normal]{"entity": "usecase", "value": "home / personal"}
+    - [home]{"entity": "usecase", "value": "home / personal"}
+    - [personal]{"entity": "usecase", "value": "home / personal"}
+
+- regex: price
+  examples: |
+    - \d{5,7}
+
+- intent: get_price
+  examples: |
+    - [70000](price)
+    - [200000](price)
+    - [1000000](price)
+    - i want laptop of price [99999](price)
+    - i want laptop of price [999999](price)
+    - laptop of price [123456](price)
+    - laptop of price [12345](price)
+    - i want laptop of price around [12345](price)
+    - i want laptop of price around [123456](price)
+    - laptop of price around [12345](price)
+    - laptop of price around [123456](price)
+    - around [12345](price)
+    - around [123456](price)
+
+- lookup: brand
+  examples: |
+    - acer
+    - alienware
+    - asus
+    - apple
+    - dell
+    - gigabyte
+    - google
+    - hp
+    - huawei
+    - lenovo
+    - lg
+    - microsoft
+    - msi
+    - razer
+    - samsung
+
+- intent: get_brand
+  examples: |
+    - i want laptop of brand [dell]{"entity": "brand"}
+    - i want laptop of brand [asus]{"entity": "brand"}
+    - i want laptop of brand [hp]{"entity": "brand"}
+    - i want laptop of brand [acer]{"entity": "brand"}
+    - i want a laptop of brand [microsoft]{"entity": "brand"} 
+    - i want a laptop of brand [huawei]{"entity": "brand"}
+    - i want a laptop of brand [razer]{"entity": "brand"}
+    - i want a laptop of brand [alienware]{"entity": "brand"}
+    - [acer]{"entity": "brand"}
+    - [alienware]{"entity": "brand"}
+    - [asus]{"entity": "brand"}
+    - [apple]{"entity": "brand"}
+    - [dell]{"entity": "brand"}
+    - [gigabyte]{"entity": "brand"}
+    - [google]{"entity": "brand"}
+    - [hp]{"entity": "brand"}
+    - [huawei]{"entity": "brand"}
+    - [lenovo]{"entity": "brand"}
+    - [lg]{"entity": "brand"}
+    - [microsoft]{"entity": "brand"}
+    - [msi]{"entity": "brand"}
+    - [razer]{"entity": "brand"}
+    - [samsung]{"entity": "brand"}
+    - brand [acer]{"entity": "brand"}
+    - brand [alienware]{"entity": "brand"}
+    - brand [asus]{"entity": "brand"}
+    - brand [apple]{"entity": "brand"}
+    - brand [dell]{"entity": "brand"}
+    - brand [gigabyte]{"entity": "brand"}
+    - brand [google]{"entity": "brand"}
+    - brand [hp]{"entity": "brand"}
+    - brand [huawei]{"entity": "brand"}
+    - brand [lenovo]{"entity": "brand"}
+    - brand [lg]{"entity": "brand"}
+    - brand [microsoft]{"entity": "brand"}
+    - brand [msi]{"entity": "brand"}
+    - brand [razer]{"entity": "brand"}
+    - brand [samsung]{"entity": "brand"}
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
