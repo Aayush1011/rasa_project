@@ -1,0 +1,10 @@
+[
+  {
+    "name": "price",
+    "pattern": "\\d{5,7}"
+  },
+  {
+    "name": "brand",
+    "pattern": "(\\bacer\\b|\\balienware\\b|\\basus\\b|\\bapple\\b|\\bdell\\b|\\bgigabyte\\b|\\bgoogle\\b|\\bhp\\b|\\bhuawei\\b|\\blenovo\\b|\\blg\\b|\\bmicrosoft\\b|\\bmsi\\b|\\brazer\\b|\\bsamsung\\b)"
+  }
+]

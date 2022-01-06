@@ -1,0 +1,18 @@
+{
+  "office": "work / business",
+  "college": "work / business",
+  "school": "work / business",
+  "study": "work / business",
+  "work": "work / business",
+  "games": "gaming",
+  "game": "gaming",
+  "video editing": "gaming",
+  "edit video": "gaming",
+  "content creation": "gaming",
+  "create content": "gaming",
+  "content creator": "gaming",
+  "watch": "home / personal",
+  "normal": "home / personal",
+  "home": "home / personal",
+  "personal": "home / personal"
+}

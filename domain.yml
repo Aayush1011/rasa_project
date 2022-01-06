@@ -1,47 +1,76 @@
-version: "2.0"
-
-intents:
-  - greet
-  - goodbye
-  - get_usecase
-  - bot_challenge
-
-entities:
-  - usecase
-  - price
-  - brandgi
-
-slots:
-  usecase:
-    type: text
-    auto_fill: true
-    influence_conversation: false
-
-responses:
-  utter_greet_1:
-  - text: "Hey! I am Your Laptop Guide."
-
-  utter_greet_2:
-  - text: "I will help you pick the perfect laptop for your needs!"
-
-  utter_what_usecase:
-  - text: "What will you be using the laptop for?"
-
-  utter_usecase:
-  - text: "So you will be using laptop for {usecase} purposes."
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
+version: '3.0'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
-config:
-  store_entities_as_slots: true
+intents:
+- get_price
+- get_brand
+- get_usecase
+- greet
+- goodbye
+- bot_challenge
+- out_of_scope
+entities:
+- brand
+- price
+- usecase
+slots:
+  usecase:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: usecase
+  price:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: price
+  brand:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: brand
+responses:
+  utter_greet:
+  - text: |-
+      Hey! I am Your Laptop Guide.
+      I will help you pick the perfect laptop for your needs!
+  utter_ask_usecase:
+  - text: What will you be using the laptop for?
+  utter_ask_price:
+  - text: What is your budget like?
+  utter_ask_brand:
+  - text: What brand are you looking for?
+  utter_thanks:
+  - text: Thanks for providing your requirements!
+  utter_slot_values:
+  - text: |-
+      So you will be using laptop for {usecase} purposes.
+      You have budget of around {price}.
+      And you want laptop of brand {brand}.
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that.
+  utter_default:
+  - text: Sorry I didn't get that. Can you rephrase?
+  utter_please_rephrase:
+  - text: I'm sorry, I didn't quite understand that. Could you rephrase?
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+actions:
+- action_submit
+- utter_greet
+- utter_slot_values
+- utter_thanks
+forms:
+  laptop_form:
+    required_slots:
+    - usecase
+    - price
+    - brand
