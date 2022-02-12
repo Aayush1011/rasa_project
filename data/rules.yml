@@ -12,24 +12,6 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: Activate form
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - action: laptop_form
-  - active_loop: laptop_form
-
-- rule: Submit form
-  condition:
-  - active_loop: laptop_form
-  steps:
-  - action: laptop_form
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_thanks
-  - action: utter_slot_values
-
 - rule: out-of-scope
   steps:
   - intent: out_of_scope
@@ -39,3 +21,30 @@ rules:
   steps:
   - intent: nlu_fallback
   - action: utter_please_rephrase
+
+# - rule: welcome user
+#   conversation_start: true  # this rule only applies at the beginning of a conversation
+#   steps:
+#     - intent: greet
+#     - action: utter_greet  
+
+- rule: Activate laptop form
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: laptop_form
+  - active_loop: laptop_form
+
+- rule: Submit laptop form
+  condition:
+  - active_loop: laptop_form
+  steps:
+  - action: laptop_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_thanks
+  - action: utter_slot_values
+  - action: utter_again
+  - action: action_restart
+  

@@ -52,36 +52,35 @@ nlu:
     - [content creation]{"entity": "usecase", "value": "gaming"}
     - [create content]{"entity": "usecase", "value": "gaming"}
     - [content creator]{"entity": "usecase", "value": "gaming"}
-    - laptop for [school]{"entity": "usecase", "value": "work / business"}
-    - laptop for [work]{"entity": "usecase", "value": "work / business"}
-    - laptop for [college]{"entity": "usecase", "value": "work / business"}
-    - laptop for [study]{"entity": "usecase", "value": "work / business"}
-    - i need laptop to [study]{"entity": "usecase", "value": "work / business"}
-    - i need laptop to [work]{"entity": "usecase", "value": "work / business"}
-    - want to [work]{"entity": "usecase", "value": "work / business"}
-    - need to [work]{"entity": "usecase", "value": "work / business"}
-    - need to [study]{"entity": "usecase", "value": "work / business"}
-    - want to [study]{"entity": "usecase", "value": "work / business"}
-    - [work]{"entity": "usecase", "value": "work / business"} laptop
-    - [office]{"entity": "usecase", "value": "work / business"}
-    - [college]{"entity": "usecase", "value": "work / business"}
-    - [school]{"entity": "usecase", "value": "work / business"}
-    - [study]{"entity": "usecase", "value": "work / business"}
-    - [normal]{"entity": "usecase", "value": "home / personal"} use
-    - [watch]{"entity": "usecase", "value": "home / personal"} video
-    - [watch]{"entity": "usecase", "value": "home / personal"} youtube
-    - [watch]{"entity": "usecase", "value": "home / personal"} movie
-    - for [home]{"entity": "usecase", "value": "home / personal"}
-    - for [personal]{"entity": "usecase", "value": "home / personal"} use
-    - use at [home]{"entity": "usecase", "value": "home / personal"}
-    - use in [home]{"entity": "usecase", "value": "home / personal"}
-    - use [normal]{"entity": "usecase", "value": "home / personal"}
-    - use [home]{"entity": "usecase", "value": "home / personal"}
-    - [watch]{"entity": "usecase", "value": "home / personal"}
-    - [normal]{"entity": "usecase", "value": "home / personal"}
-    - [home]{"entity": "usecase", "value": "home / personal"}
-    - [personal]{"entity": "usecase", "value": "home / personal"}
-    - [work]{"entity": "usecase", "value": "work / business"} laptop
+    - laptop for [school]{"entity": "usecase", "value": "work_business"}
+    - laptop for [work]{"entity": "usecase", "value": "work_business"}
+    - laptop for [college]{"entity": "usecase", "value": "work_business"}
+    - laptop for [study]{"entity": "usecase", "value": "work_business"}
+    - i need laptop to [study]{"entity": "usecase", "value": "work_business"}
+    - i need laptop to [work]{"entity": "usecase", "value": "work_business"}
+    - want to [work]{"entity": "usecase", "value": "work_business"}
+    - need to [work]{"entity": "usecase", "value": "work_business"}
+    - need to [study]{"entity": "usecase", "value": "work_business"}
+    - want to [study]{"entity": "usecase", "value": "work_business"}
+    - [work]{"entity": "usecase", "value": "work_business"} laptop
+    - [office]{"entity": "usecase", "value": "work_business"}
+    - [college]{"entity": "usecase", "value": "work_business"}
+    - [school]{"entity": "usecase", "value": "work_business"}
+    - [study]{"entity": "usecase", "value": "work_business"}
+    - [normal]{"entity": "usecase", "value": "home_personal"} use
+    - [watch]{"entity": "usecase", "value": "home_personal"} video
+    - [watch]{"entity": "usecase", "value": "home_personal"} youtube
+    - [watch]{"entity": "usecase", "value": "home_personal"} movie
+    - for [home]{"entity": "usecase", "value": "home_personal"}
+    - for [personal]{"entity": "usecase", "value": "home_personal"} use
+    - use at [home]{"entity": "usecase", "value": "home_personal"}
+    - use in [home]{"entity": "usecase", "value": "home_personal"}
+    - use [normal]{"entity": "usecase", "value": "home_personal"}
+    - use [home]{"entity": "usecase", "value": "home_personal"}
+    - [watch]{"entity": "usecase", "value": "home_personal"}
+    - [normal]{"entity": "usecase", "value": "home_personal"}
+    - [home]{"entity": "usecase", "value": "home_personal"}
+    - [personal]{"entity": "usecase", "value": "home_personal"}
 - intent: get_price
   examples: |
     - [70000](price)
@@ -105,55 +104,40 @@ nlu:
     - i want laptop of brand [hp](brand)
     - i want laptop of brand [acer](brand)
     - i want a laptop of brand [microsoft](brand)
-    - i want a laptop of brand [huawei](brand)
     - i want a laptop of brand [razer](brand)
-    - i want a laptop of brand [alienware](brand)
     - [acer](brand)
-    - [alienware](brand)
     - [asus](brand)
-    - [apple](brand)
     - [dell](brand)
     - [gigabyte](brand)
-    - [google](brand)
     - [hp](brand)
-    - [huawei](brand)
+    - [hyundai](brand)
     - [lenovo](brand)
-    - [lg](brand)
     - [microsoft](brand)
     - [msi](brand)
     - [razer](brand)
-    - [samsung](brand)
+    - [toshiba](brand)
     - brand [acer](brand)
-    - brand [alienware](brand)
     - brand [asus](brand)
-    - brand [apple](brand)
     - brand [dell](brand)
     - brand [gigabyte](brand)
-    - brand [google](brand)
     - brand [hp](brand)
-    - brand [huawei](brand)
+    - brand [hyundai](brand)
     - brand [lenovo](brand)
-    - brand [lg](brand)
     - brand [microsoft](brand)
     - brand [msi](brand)
     - brand [razer](brand)
-    - brand [samsung](brand)
+    - brand [toshiba](brand)
     - [acer](brand) brand
-    - [alienware](brand) brand
     - [asus](brand) brand
-    - [apple](brand) brand
     - [dell](brand) brand
     - [gigabyte](brand) brand
-    - [google](brand) brand
     - [hp](brand) brand
-    - [huawei](brand) brand
+    - [hyundai](brand) brand
     - [lenovo](brand) brand
-    - [lg](brand) brand
     - [microsoft](brand) brand
     - [msi](brand) brand
     - [razer](brand) brand
-    - [samsung](brand) brand
-    - [dell](brand)
+    - [toshiba](brand) brand
 - intent: out_of_scope
   examples: |
     - I want to order food
@@ -178,14 +162,14 @@ nlu:
     - video editing
     - edit video
     - gaming
-- synonym: work / business
+- synonym: work_business
   examples: |
     - school
     - work
     - college
     - study
     - office
-- synonym: home / personal
+- synonym: home_personal
   examples: |
     - normal
     - watch
@@ -197,17 +181,13 @@ nlu:
 - lookup: brand
   examples: |
     - acer
-    - alienware
     - asus
-    - apple
     - dell
     - gigabyte
-    - google
     - hp
-    - huawei
+    - hyundai
     - lenovo
-    - lg
     - microsoft
     - msi
     - razer
-    - samsung
+    - toshiba

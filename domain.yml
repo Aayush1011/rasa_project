@@ -3,10 +3,17 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- greet
 - get_price
 - get_brand
 - get_usecase
-- greet
+- affirm
+- deny
+- also_affirm
+- also_deny
+- also_also_affirm
+- also_also_deny
+- inform
 - goodbye
 - bot_challenge
 - out_of_scope
@@ -14,6 +21,7 @@ entities:
 - brand
 - price
 - usecase
+- screen_size
 slots:
   usecase:
     type: text
@@ -21,36 +29,132 @@ slots:
     mappings:
     - type: from_entity
       entity: usecase
+      not_intent: greet
   price:
-    type: text
+    type: float
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: price
+      not_intent: greet
+    max_value: 1300000
+    min_value: 20000
+  is_usecase:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: True
+      not_intent: greet
+    - type: from_intent
+      intent: deny
+      value: False
+      not_intent: greet
+  is_brand:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      intent: also_affirm
+      value: True
+      not_intent: greet
+    - type: from_intent
+      intent: also_deny
+      value: False
+      not_intent: greet
   brand:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: brand
+      not_intent: greet
+  is_screen_size:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      intent: also_also_affirm
+      value: True
+      not_intent: greet
+    - type: from_intent
+      intent: also_also_deny
+      value: False
+      not_intent: greet
+  screen_size:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: screen_size
+      not_intent: greet
 responses:
   utter_greet:
   - text: |-
       Hey! I am Your Laptop Guide.
       I will help you pick the perfect laptop for your needs!
-  utter_ask_usecase:
-  - text: What will you be using the laptop for?
   utter_ask_price:
   - text: What is your budget like?
+  utter_ask_is_usecase:
+  - text: Do you have usecase of laptop in mind?
+    buttons:
+    - title: Yes
+      payload: /affirm
+    - title: No
+      payload: /deny
+  utter_ask_usecase:
+  - text: What will you be using the laptop for?
+  utter_ask_is_brand:
+  - text: Do you have preference for a particular brand?
+    buttons:
+    - title: Yes
+      payload: /also_affirm
+    - title: No
+      payload: /also_deny
   utter_ask_brand:
-  - text: What brand are you looking for?
+  - text: Which brand of laptop do you want?
+  utter_ask_is_screen_size:
+  - text: Do you have preference for screen size?
+    buttons:
+    - title: Yes
+      payload: /also_also_affirm
+    - title: No
+      payload: /also_also_deny
+  utter_ask_screen_size:
+  - text: What screen size do you want on your laptop?
+    buttons:
+    - title: 10 inch
+      payload: /inform{{"screen_size":"10 inch"}}
+    - title: 11 inch
+      payload: /inform{{"screen_size":"11 inch"}}
+    - title: 12 inch
+      payload: /inform{{"screen_size":"12 inch"}}
+    - title: 13 inch
+      payload: /inform{{"screen_size":"13 inch"}}
+    - title: 14 inch
+      payload: /inform{{"screen_size":"14 inch"}}
+    - title: 15 inch
+      payload: /inform{{"screen_size":"15 inch"}}
+    - title: 16 inch
+      payload: /inform{{"screen_size":"16 inch"}}
+    - title: 17 inch
+      payload: /inform{{"screen_size":"17 inch"}}
   utter_thanks:
   - text: Thanks for providing your requirements!
   utter_slot_values:
   - text: |-
-      So you will be using laptop for {usecase} purposes.
-      You have budget of around {price}.
+      So you have budget of around {price}.
+      You will be using laptop for {usecase} purposes.
       And you want laptop of brand {brand}.
+      Also you desire screen-size of {screen_size}.
+  utter_exit:
+  - text: Exiting...
+  utter_again:
+  - text: Get more laptop recommendations!
+    buttons:
+    - title: Lets go!!!
+      payload: /greet
   utter_out_of_scope:
   - text: Sorry, I can't handle that.
   utter_default:
@@ -64,13 +168,14 @@ responses:
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
 actions:
-- action_submit
 - utter_greet
 - utter_slot_values
 - utter_thanks
+- validate_laptop_form
 forms:
   laptop_form:
     required_slots:
-    - usecase
     - price
-    - brand
+    - is_usecase
+    - is_brand
+    - is_screen_size

@@ -1,0 +1,36 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-brand",
+      "2": "I-brand",
+      "3": "L-brand",
+      "4": "U-brand",
+      "5": "B-price",
+      "6": "I-price",
+      "7": "L-price",
+      "8": "U-price",
+      "9": "B-usecase",
+      "10": "I-usecase",
+      "11": "L-usecase",
+      "12": "U-usecase",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-brand": 1,
+      "I-brand": 2,
+      "L-brand": 3,
+      "U-brand": 4,
+      "B-price": 5,
+      "I-price": 6,
+      "L-price": 7,
+      "U-price": 8,
+      "B-usecase": 9,
+      "I-usecase": 10,
+      "L-usecase": 11,
+      "U-usecase": 12,
+      "O": 0
+    },
+    "num_tags": 13
+  }
+]

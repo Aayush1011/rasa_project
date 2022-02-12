@@ -12,49 +12,80 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, EventType
+from rasa_sdk.forms import FormValidationAction
+from rasa_sdk.types import DomainDict
 
 
-# class ActionHelloWorld(Action):
-#
-#     def name(self) -> Text:
-#         return "action_hello_world"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         dispatcher.utter_message(text="Hello World!")
-#
-#         return []
+ALLOWED_USECASES = ['gaming', 'work_business', 'home_personal']
+ALLOWED_BRANDS = ['acer', 'asus', 'dell', 'gigabyte', 'hp', 'hyundai', 'lenovo', 'microsoft', 'msi', 'razer', 'toshiba']
 
 
-class ValidateLaptopForm(Action):
+class ValidateLaptopForm(FormValidationAction):
     def name(self) -> Text:
-        return "laptop_form"
+        return "validate_laptop_form"
 
-    def run(
-        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict) -> List[EventType]:
-        required_slots = ["usecase", "price", "brand"]
+    async def required_slots(
+        self, 
+        domain_slots: List[Text],
+        dispatcher: "CollectingDispatcher", 
+        tracker: "Tracker", 
+        domain: "DomainDict"
+    ) -> List[Text]:
+        if (tracker.slots.get("is_usecase") in [False, None]) and (tracker.slots.get("is_brand") in [False, None]) and (tracker.slots.get("is_screen_size") in [False, None]):
+            return domain_slots
+        elif tracker.slots.get("is_usecase") == True and (tracker.slots.get("is_brand") in [False, None]) and (tracker.slots.get("is_screen_size") in [False, None]):
+            return ['price', 'is_usecase', 'usecase', 'is_brand', 'is_screen_size']
+        elif tracker.slots.get("is_usecase") == True and tracker.slots.get("is_brand") == True and (tracker.slots.get("is_screen_size") in [False, None]):
+            return ['price', 'is_usecase', 'usecase', 'is_brand', 'brand', 'is_screen_size']
+        elif tracker.slots.get("is_usecase") == True and tracker.slots.get("is_brand") == False and tracker.slots.get("is_screen_size") == True:
+            return ['price', 'is_usecase', 'usecase', 'is_brand', 'is_screen_size', 'screen_size']
+        elif tracker.slots.get("is_usecase") == True and tracker.slots.get("is_brand") == True and tracker.slots.get("is_screen_size") == True:
+            return ['price', 'is_usecase', 'usecase', 'is_brand', 'brand', 'is_screen_size', 'screen_size']    
+        elif tracker.slots.get("is_usecase") == False and tracker.slots.get("is_brand") == True and (tracker.slots.get("is_screen_size") in [False, None]):
+            return ['price', 'is_usecase', 'is_brand', 'brand', 'is_screen_size']
+        elif tracker.slots.get("is_usecase") == False and tracker.slots.get("is_brand") == False and tracker.slots.get("is_screen_size") == True:
+            return ['price', 'is_usecase', 'is_brand', 'is_screen_size', 'screen_size']
+        elif tracker.slots.get("is_usecase") == False and tracker.slots.get("is_brand") == True and tracker.slots.get("is_screen_size") == True:
+            return ['price', 'is_usecase', 'is_brand', 'brand', 'is_screen_size', 'screen_size']
 
-        for slot_name in required_slots:
-            if tracker.slots.get(slot_name) is None:
-                # The slot is not filled yet. Request the user to fill this slot next.
-                return [SlotSet("requested_slot", slot_name)]
-
-        # All slots are filled.
-        return [SlotSet("requested_slot", None)]
-
-class ActionSubmit(Action):
-    def name(self) -> Text:
-        return "action_submit"
-
-    def run(
+    def validate_price(
         self,
-        dispatcher,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
         tracker: Tracker,
-        domain: "DomainDict",
-    ) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(template="utter_slot_values",
-                                 Usecase=tracker.get_slot("usecase"),
-                                 Price=tracker.get_slot("price"),
-                                 Brand=tracker.get_slot("brand"))
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+
+        if int(slot_value) < 20000 or int(slot_value) > 1300000:
+            dispatcher.utter_message(text=f"Enter price between Rs. 20 Thousand and Rs. 13 Lakhs.")
+            return {"price": None}
+        dispatcher.utter_message(text=f"So you want a laptop of around {slot_value}.")
+        return {"price": slot_value}
+
+    def validate_usecase(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+
+        if slot_value.lower() not in ALLOWED_USECASES:
+            dispatcher.utter_message(text=f"Please enter a valid laptop usecase.")
+            return {"usecase": None}
+        dispatcher.utter_message(text=f"Ok! Got your required usecase!")
+        return {"usecase": slot_value}
+
+    def validate_brand(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+
+        if slot_value.lower() not in ALLOWED_BRANDS:
+            dispatcher.utter_message(text=f"I don't recognise that brand. I have {'/'.join(ALLOWED_BRANDS)} brands in my database.")
+            return {"brand": None}
+        dispatcher.utter_message(text=f"Ok! You want a laptop of brand {slot_value}.")
+        return {"brand": slot_value}
