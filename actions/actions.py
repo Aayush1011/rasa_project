@@ -7,6 +7,7 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 
+from matplotlib import image
 from . import rec_sys
 from typing import Any, Text, Dict, List
 
@@ -97,6 +98,6 @@ class ActionRec(Action):
 
     def run(self, dispatcher, tracker, domain):
         rec_sys.get_rec(price=int(tracker.get_slot("price")), usecase=tracker.get_slot("usecase"), brand=tracker.get_slot("brand"), screen_size_name=tracker.get_slot("screen_size"))
-        dispatcher.utter_message(attachment="D:/new/ayush/rasa_beginner/actions/img/lap_rec.png")
+        dispatcher.utter_message(image="D:/new/ayush/rasa_beginner/actions/img/lap_rec.png")
 
         return []    

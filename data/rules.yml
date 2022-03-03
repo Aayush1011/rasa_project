@@ -45,6 +45,7 @@ rules:
     - requested_slot: null
   - action: utter_thanks
   - action: utter_slot_values
+  - action: action_rec
   - action: utter_again
   - action: action_restart
   
