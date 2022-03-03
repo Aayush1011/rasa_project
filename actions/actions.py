@@ -7,6 +7,7 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 
+from . import rec_sys
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
@@ -89,3 +90,13 @@ class ValidateLaptopForm(FormValidationAction):
             return {"brand": None}
         dispatcher.utter_message(text=f"Ok! You want a laptop of brand {slot_value}.")
         return {"brand": slot_value}
+
+class ActionRec(Action):
+    def name(self):
+        return 'action_rec'
+
+    def run(self, dispatcher, tracker, domain):
+        rec_sys.get_rec(price=int(tracker.get_slot("price")), usecase=tracker.get_slot("usecase"), brand=tracker.get_slot("brand"), screen_size_name=tracker.get_slot("screen_size"))
+        dispatcher.utter_message(attachment="D:/new/ayush/rasa_beginner/actions/img/lap_rec.png")
+
+        return []    
