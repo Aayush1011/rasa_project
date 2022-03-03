@@ -172,6 +172,7 @@ actions:
 - utter_slot_values
 - utter_thanks
 - validate_laptop_form
+- action_rec
 forms:
   laptop_form:
     required_slots:
