@@ -10,6 +10,7 @@
 from matplotlib import image
 from . import rec_sys
 from typing import Any, Text, Dict, List
+import json
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -59,7 +60,7 @@ class ValidateLaptopForm(FormValidationAction):
     ) -> Dict[Text, Any]:
 
         if int(slot_value) < 20000 or int(slot_value) > 1300000:
-            dispatcher.utter_message(text=f"Enter price between Rs. 20 Thousand and Rs. 13 Lakhs.")
+            dispatcher.utter_message(text=f"Enter price between 20000 and 1300000 in rupees. for e.g. 50000")
             return {"price": None}
         dispatcher.utter_message(text=f"So you want a laptop of around {slot_value}.")
         return {"price": slot_value}
@@ -92,12 +93,26 @@ class ValidateLaptopForm(FormValidationAction):
         dispatcher.utter_message(text=f"Ok! You want a laptop of brand {slot_value}.")
         return {"brand": slot_value}
 
+# class ActionRec(Action):
+#     def name(self):
+#         return 'action_rec'
+
+#     def run(self, dispatcher, tracker, domain):
+#         rec_sys.get_rec(price=int(tracker.get_slot("price")), usecase=tracker.get_slot("usecase"), brand=tracker.get_slot("brand"), screen_size_name=tracker.get_slot("screen_size"))
+#         dispatcher.utter_message(image="D:/new/ayush/rasa_beginner/actions/img/lap_rec.png")
+
+#         return []    
+
 class ActionRec(Action):
     def name(self):
         return 'action_rec'
 
     def run(self, dispatcher, tracker, domain):
-        rec_sys.get_rec(price=int(tracker.get_slot("price")), usecase=tracker.get_slot("usecase"), brand=tracker.get_slot("brand"), screen_size_name=tracker.get_slot("screen_size"))
-        dispatcher.utter_message(image="D:/new/ayush/rasa_beginner/actions/img/lap_rec.png")
+        #out = rec_sys.get_rec(price=int(tracker.get_slot("price")), usecase=tracker.get_slot("usecase").lower(), brand=tracker.get_slot("brand").lower(), screen_size_name=tracker.get_slot("screen_size"))
+        out = rec_sys.get_rec(price=int(tracker.get_slot("price")), usecase=tracker.get_slot("usecase"), brand=tracker.get_slot("brand"), screen_size_name=tracker.get_slot("screen_size"))
+        #dispatcher.utter_message(image="C:/Users/Aayush Adhikari/_directory/rasa_beginner/actions/img/lap_rec.png")
 
-        return []    
+        dispatcher.utter_message(text="Here are your suggestions")
+        for i in range(len(out)):
+            dispatcher.utter_message(text="{vari}".format(vari=json.dumps(out[i]).replace(r'{', '').replace('"', '').replace(r'}', '')))
+        return []

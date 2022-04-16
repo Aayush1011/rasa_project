@@ -22,6 +22,7 @@ entities:
 - price
 - usecase
 - screen_size
+- index_value
 slots:
   usecase:
     type: text
@@ -30,6 +31,9 @@ slots:
     - type: from_entity
       entity: usecase
       not_intent: greet
+      conditions: 
+      - active_loop: laptop_form
+        requested_slot: usecase
   price:
     type: float
     influence_conversation: true
@@ -37,6 +41,9 @@ slots:
     - type: from_entity
       entity: price
       not_intent: greet
+      conditions: 
+      - active_loop: laptop_form
+        requested_slot: price
     max_value: 1300000
     min_value: 20000
   is_usecase:
@@ -70,6 +77,9 @@ slots:
     - type: from_entity
       entity: brand
       not_intent: greet
+      conditions: 
+      - active_loop: laptop_form
+        requested_slot: brand
   is_screen_size:
     type: bool
     influence_conversation: true
@@ -89,15 +99,23 @@ slots:
     - type: from_entity
       entity: screen_size
       not_intent: greet
+  index_value:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: index_value
+      not_intent: greet
+
 responses:
   utter_greet:
   - text: |-
       Hey! I am Your Laptop Guide.
       I will help you pick the perfect laptop for your needs!
   utter_ask_price:
-  - text: What is your budget like?
+  - text: What is your budget like?(in rupees)(e.g. 150000)
   utter_ask_is_usecase:
-  - text: Do you have usecase of laptop in mind?
+  - text: Do you know what you will be using laptop for?
     buttons:
     - title: Yes
       payload: /affirm
@@ -122,7 +140,7 @@ responses:
     - title: No
       payload: /also_also_deny
   utter_ask_screen_size:
-  - text: What screen size do you want on your laptop?
+  - text: What screen size do you want on your laptop?(select any one)
     buttons:
     - title: 10 inch
       payload: /inform{{"screen_size":"10 inch"}}
@@ -148,6 +166,9 @@ responses:
       You will be using laptop for {usecase} purposes.
       And you want laptop of brand {brand}.
       Also you desire screen-size of {screen_size}.
+  utter_got_info:
+  - text: |-
+      Following are the laptops according to your needs.
   utter_exit:
   - text: Exiting...
   utter_again:

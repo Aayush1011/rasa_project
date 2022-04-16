@@ -72,12 +72,13 @@ def get_rec(price, usecase=None, brand=None, screen_size_name=None):
         if length == 0:
             return "No laptop found that meets any of the entered criteria."
         
-    ax = plt.subplot(111, frame_on=False) # no visible frame
-    ax.xaxis.set_visible(False)  # hide the x axis
-    ax.yaxis.set_visible(False)  # hide the y axis
-    tb = table(ax, df.loc[ind2, cols])
-    tb.auto_set_font_size(False)
-    tb.set_fontsize(14)
-    tb.auto_set_column_width(col=list(range(len(df.columns))))
-    tb.scale(2, 2)
-    plt.savefig('D:/new/ayush/rasa_beginner/actions/img/lap_rec.png', bbox_inches='tight')
+    # ax = plt.subplot(111, frame_on=False) # no visible frame
+    # ax.xaxis.set_visible(False)  # hide the x axis
+    # ax.yaxis.set_visible(False)  # hide the y axis
+    # tb = table(ax, df.loc[ind2, cols])
+    # tb.auto_set_font_size(False)
+    # tb.set_fontsize(14)
+    # tb.auto_set_column_width(col=list(range(len(df.columns))))
+    # tb.scale(2, 2)
+    # plt.savefig('D:/new/ayush/rasa_beginner/actions/img/lap_rec.png', bbox_inches='tight')
+    return df.loc[ind2, cols].to_dict("records")

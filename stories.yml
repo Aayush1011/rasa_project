@@ -1,26 +1,26 @@
 
 version: "3.0"
 stories:
-- story: interactive_story_1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - action: laptop_form
-  - active_loop: laptop_form
-  - slot_was_set:
-    - requested_slot: usecase
-  - slot_was_set:
-    - usecase: work / business
-  - slot_was_set:
-    - requested_slot: price
-  - slot_was_set:
-    - price: '80000'
-  - slot_was_set:
-    - requested_slot: brand
-  - slot_was_set:
-    - brand: dell
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: utter_thanks
-  - action: utter_slot_values
+# - story: interactive_story_1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - action: laptop_form
+#   - active_loop: laptop_form
+#   - slot_was_set:
+#     - requested_slot: usecase
+#   - slot_was_set:
+#     - usecase: work / business
+#   - slot_was_set:
+#     - requested_slot: price
+#   - slot_was_set:
+#     - price: '80000'
+#   - slot_was_set:
+#     - requested_slot: brand
+#   - slot_was_set:
+#     - brand: dell
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_thanks
+#   - action: utter_slot_values

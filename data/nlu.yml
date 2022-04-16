@@ -8,14 +8,30 @@ nlu:
     - hello there
     - good morning
     - good evening
-    - moin
     - hey there
     - let's go
     - hey dude
     - goodmorning
     - goodevening
+    - goodafternoon
     - good afternoon
     - laptop
+    - oi
+    - oe
+    - is anyone there?
+    - is there anyone to talk?
+    - is anyone there
+    - is there anyone to talk
+    - whats up?
+    - what's up?
+    - whats up
+    - what's up
+    - wassup
+    - yo
+    - let's talk
+    - lets talk
+    - let's chat
+    - lets chat
 - intent: goodbye
   examples: |
     - good afternoon
@@ -31,6 +47,9 @@ nlu:
     - see you later
 - intent: get_usecase
   examples: |
+    - i will be using laptop for playing [games]{"entity": "usecase", "value": "gaming"}
+    - i will be using laptop to play [game]{"entity": "usecase", "value": "gaming"}
+    - i will be using laptop to play [games]{"entity": "usecase", "value": "gaming"}
     - i want laptop for playing [games]{"entity": "usecase", "value": "gaming"}
     - i need laptop for playing [games]{"entity": "usecase", "value": "gaming"}
     - i need laptop to play [games]{"entity": "usecase", "value": "gaming"}
@@ -43,6 +62,8 @@ nlu:
     - [gaming](usecase) laptop
     - [game]{"entity": "usecase", "value": "gaming"} playing
     - i want to be [content creator]{"entity": "usecase", "value": "gaming"}
+    - i will be using laptop to be [content creator]{"entity": "usecase", "value": "gaming"}
+    - i will be using laptop for [content creation]{"entity": "usecase", "value": "gaming"}
     - use for [content creation]{"entity": "usecase", "value": "gaming"}
     - i want to [create content]{"entity": "usecase", "value": "gaming"}
     - [games]{"entity": "usecase", "value": "gaming"}
@@ -53,6 +74,10 @@ nlu:
     - [content creation]{"entity": "usecase", "value": "gaming"}
     - [create content]{"entity": "usecase", "value": "gaming"}
     - [content creator]{"entity": "usecase", "value": "gaming"}
+    - [work]{"entity": "usecase", "value": "work_business"}
+    - [project]{"entity": "usecase", "value": "work_business"}
+    - [work and business]{"entity": "usecase", "value": "work_business"}
+    - [business]{"entity": "usecase", "value": "work_business"}
     - laptop for [school]{"entity": "usecase", "value": "work_business"}
     - laptop for [work]{"entity": "usecase", "value": "work_business"}
     - laptop for [college]{"entity": "usecase", "value": "work_business"}
@@ -63,6 +88,8 @@ nlu:
     - need to [work]{"entity": "usecase", "value": "work_business"}
     - need to [study]{"entity": "usecase", "value": "work_business"}
     - want to [study]{"entity": "usecase", "value": "work_business"}
+    - [minor project]{"entity": "usecase", "value": "work_business"}
+    - [major project]{"entity": "usecase", "value": "work_business"}
     - [work]{"entity": "usecase", "value": "work_business"} laptop
     - [office]{"entity": "usecase", "value": "work_business"}
     - [college]{"entity": "usecase", "value": "work_business"}
@@ -73,6 +100,8 @@ nlu:
     - [watch]{"entity": "usecase", "value": "home_personal"} youtube
     - [watch]{"entity": "usecase", "value": "home_personal"} movie
     - for [home]{"entity": "usecase", "value": "home_personal"}
+    - [home]{"entity": "usecase", "value": "home_personal"}
+    - [entertainment]{"entity": "usecase", "value": "home_personal"}
     - for [personal]{"entity": "usecase", "value": "home_personal"} use
     - use at [home]{"entity": "usecase", "value": "home_personal"}
     - use in [home]{"entity": "usecase", "value": "home_personal"}
@@ -82,6 +111,19 @@ nlu:
     - [normal]{"entity": "usecase", "value": "home_personal"}
     - [home]{"entity": "usecase", "value": "home_personal"}
     - [personal]{"entity": "usecase", "value": "home_personal"}
+    - i will be using laptop for [project]{"entity": "usecase", "value": "work_business"}
+    - i will be using laptop for [work]{"entity": "usecase", "value": "work_business"}
+    - i will be using laptop for [entertainment]{"entity": "usecase", "value": "home_personal"}
+    - i will be using laptop at [home]{"entity": "usecase", "value": "home_personal"}
+    - i will be using laptop for [video editing]{"entity": "usecase", "value": "gaming"}
+    - i will be using laptop to [watch youtube]{"entity": "usecase", "value": "home_personal"}
+    - i will be using laptop for [study]{"entity": "usecase", "value": "work_business"}
+    - i will be using laptop for [coding]{"entity": "usecase", "value": "work_business"}
+    - i will be using laptop for [school]{"entity": "usecase", "value": "work_business"}
+    - i will be using laptop for [office]{"entity": "usecase", "value": "work_business"}
+    - i will be using laptop for [minor project]{"entity": "usecase", "value": "work_business"}
+    - i will be using laptop for [major project]{"entity": "usecase", "value": "work_business"}
+    - for [project]{"entity": "usecase", "value": "work_business"} works
 - intent: get_price
   examples: |
     - [70000](price)
@@ -98,6 +140,10 @@ nlu:
     - around [12345](price)
     - around [123456](price)
     - [80000](price)
+    - my budget is around [100000](price)
+    - my budget is [40000](price)
+    - my budget is like [50000](price)
+    - i have [60000](price) money
 - intent: get_brand
   examples: |
     - i want laptop of brand [dell](brand)
